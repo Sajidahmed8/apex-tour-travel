@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign In</title>
+<link rel="icon" href="Icon/Tab_icon.png" sizes="16x16 32x32 64x64" type="image/png" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+  <script type="text/javascript" src="jQuery.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style6.css">
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Arial;
+    font-size: 17px;
+}
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
+.content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: #999999; /*#fefefe;*/
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+<script type="text/javascript">
+function validate()                                   
+{            
+    var email = document.forms["LoginForm"]["EMail"];   
+    var password = document.forms["LoginForm"]["Password"]; 
+  
+    if (email.value.length== "")                                  
+    {
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+  
+    if (email.value.indexOf("@", 0) < 0)                
+    {
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+  
+    if (email.value.indexOf(".", 0) < 0)                
+    {
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+  
+    if (password.value=="")                       
+    {
+        window.alert("Please enter your password");
+        password.focus();
+        return false;
+    }
+
+     if(password.value.length<6){  
+       window.alert("Please enter more than 6 digit password");
+        password.focus();
+        return false;
+    }
+    return true;
+  }
+</script>
+
+</head>
+<body>
+<video autoplay muted loop id="myVideo">
+  <source src="video/Scene2.mp4" type="video/mp4">
+</video>
+<div class="content">
+  <div class="mainBox">
+    <div class="heading">
+   SIGN IN
+  </div>
+  <div class="creditBox">
+    <div class="child1">  
+    </div>
+    <div class="child2">  
+      <form action="/process2" name="LoginForm" method="post"  style="margin-left: 60px;">
+        <div class="label">Email/Phone</div>
+        <div class="whiteBorder">
+          <input type="name" name="EMail" id="username" placeholder="Email/Phone" required>
+        </div>
+        <div class="label">Password</div>
+        <div class="whiteBorder">
+          <input type="password" name="Password" id="xyz" placeholder="Password" required>
+        </div>
+        <div class="whiteBorder2">
+          <input type="submit" class="submit" name="Sign in" id="finishButton" value="Sign in">
+        </div>
+         </form>
+        <a href="https://www.facebook.com/" target="_blank"> <div class="whiteBordre3">
+        <input type="submit" class="submit2" name="Sign in"  value="Sign in with Facebook">
+        </div></a>     
+    </div>
+  </div>
+  &nbsp;&nbsp;&nbsp;<a href="login2.html"  class="bottomText3">Create Account</a> <div class="bottomText4">|</div> 
+  <a href="#" class="bottomText5"  id="myBtn">Forgot password?</a>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <b><p class="decorate">Enter Your Registered Email Address.</p></b>
+      
+      <form action="/process3" name="ForgotForm" method="post"  >
+      <input type="text" name="Email2" placeholder="Email Address" required class="whiteBorder3" id="x">
+      <input type="submit" name="submit2" value="Submit" class="submit3">
+      </form>
+      <div class="confirm none" id="m">xdd</div>
+    </div>
+  </div>
+  <script>
+  var modal = document.getElementById('myModal');
+  var btn = document.getElementById("myBtn");
+  var span = document.getElementsByClassName("close")[0];
+  btn.onclick = function() {
+      modal.style.display = "block";
+  }
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+  </script>
+  <script type="text/javascript">
+       $(document).ready(function(){
+          $('.submit3').on('click',function(){
+             var y=document.getElementById("x").value;
+          document.getElementById("m").innerHTML = "Link is send to "+y+" to reset your password ";
+          $("#m").removeClass('none');
+            })
+        });
+  </script>
+  <div class="bottomText1">Copyright &copy; 2017 Apex Tour Travels. All rights reserved</div>
+  <div class="bottomText2">Powered By Jamia Millia Islamia     Maintained By Nadeem & Sajid</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Account</title>
+<link rel="icon" href="Icon/Tab_icon.png" sizes="16x16 32x32 64x64" type="image/png" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+  <script type="text/javascript" src="jQuery.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style7.css">
+<style>
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: Arial;
+    font-size: 17px;
+}
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
+.content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+</style>
+<script type="text/javascript">
+function validate()                                   
+{            
+    var email = document.forms["RegForm"]["EMail"];   
+    var phone = document.forms["RegForm"]["Telephone"];  
+    var password = document.forms["RegForm"]["Password"]; 
+    var password2 = document.forms["RegForm"]["C_password"]; 
+  
+    if (email.value.length== "")                                  
+    {
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+  
+    if (email.value.indexOf("@", 0) < 0)                
+    {
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+  
+    if (email.value.indexOf(".", 0) < 0)                
+    {
+        window.alert("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+  
+    if (phone.value=="")                          
+    {
+        window.alert("Please enter your telephone number.");
+        phone.focus();
+        return false;
+    }
+  
+    if (password.value=="")                       
+    {
+        window.alert("Please enter your password");
+        password.focus();
+        return false;
+    }
+  
+   if(password.value.length<6){  
+       window.alert("Please enter more than 6 digit password");
+        password.focus();
+        return false;
+    }
+
+    if (password.value!=password2.value)                       
+    {
+        window.alert("Confirm Password is not same");
+        password2.focus();
+        return false;
+    }
+  }
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      $('button').on('click',function(event){
+        event.preventDefault();
+        $.ajax('/process',{
+          type:'post',
+          data:{email:document.forms["RegForm"]["EMail"],phone:document.forms["RegForm"]["Telephone"],Password:document.forms["RegForm"]["Password"]},
+          dataType:'json',
+          success:function(){window.alert("REGISTRATION DONE")}
+        });
+      });
+    });
+  </script>
+
+
+</head>
+<body>
+<video autoplay muted loop id="myVideo">
+  <source src="video/Scene2.mp4" type="video/mp4">
+</video>
+<div class="content">
+  <div class="mainBox">
+  <div class="t1">
+    <div class="t2">  
+    </div>
+    <div class="heading" style="margin-left:0px;">
+       CREATE APEX ACCOUNT
+   </div>
+</div>
+  <div class="creditBox">
+    <div class="child1">  
+    </div>
+    <div class="child2">  
+      <form name="RegForm" action="/process" method="post" onsubmit="return(validate());" style="margin-left:50px;">
+       <div class="label" style="margin-top:9px">Email</div>
+        <div class="whiteBorder">
+          <input type="name" name="EMail" placeholder="Email" required class="input">
+        </div>
+          <div class="label">Mobile Number</div>
+        <div class="whiteBorder">
+          <input type="text" name="Telephone" placeholder="Mobile No." required class="input" pattern="[0-9]{10}">
+        </div>
+        <div class="label">Password</div>
+        <div class="whiteBorder">
+          <input type="password" name="Password" placeholder="Password" required class="input">
+        </div>
+        <div class="label">Confirm Password</div>
+        <div class="whiteBorder">
+          <input type="password" name="C_password" placeholder="Confirm Password" required class="input">
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="check" required  class="input2">&nbsp;&nbsp;<b>I Agree to the Terms & Conditions</b>
+        </div>
+        <div class="whiteBordre2">
+          <input type="submit" class="submit" name="Sign in" value="Create an Account" class="input">
+        </div>
+         </form>    
+    </div>
+  </div>
+  <div class="bottomText1">&nbsp;&nbsp;&nbsp;Copyright &copy; 2017 Apex Tour Travels. All rights reserved</div>
+  <div class="bottomText2">Powered By Jamia Millia Islamia     Maintained By Nadeem & Sajid</div>
+</div>
+</body>
+</html>
